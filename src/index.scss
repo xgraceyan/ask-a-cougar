@@ -1,0 +1,44 @@
+$primary: #0bb2b2;
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.spacer {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.btn-primary {
+  font-weight: 600;
+  font-style: italic;
+}
+
+label {
+  font-weight: 500;
+  font-size: 125%;
+}
+
+.title {
+  text-decoration: underline;
+  text-decoration-color: $primary;
+}
+
+#log-in-page form {
+  width: 50%;
+  margin: auto;
+}
