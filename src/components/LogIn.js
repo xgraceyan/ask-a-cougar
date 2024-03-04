@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { redirect } from "react-router";
+import { redirect, useNavigate } from "react-router";
 
 function LogIn(props) {
   const [id, setId] = useState();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setId(e.target.value);
@@ -10,6 +11,7 @@ function LogIn(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/");
   };
   return (
     <section id="log-in-page">
