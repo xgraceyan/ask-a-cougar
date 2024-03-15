@@ -3,15 +3,27 @@ import { redirect, useNavigate } from "react-router";
 
 function LogIn(props) {
   const [id, setId] = useState();
+  const [fname, setfname] = useState();
+  const [lname, setlname] = useState();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleIdChange = (e) => {
     setId(e.target.value);
+  };
+
+  const handlefnameChange = (e) => {
+    setfname(e.target.value);
+  };
+
+  const handlelnameChange = (e) => {
+    setlname(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/", {
+      state: { loggedIn: true, id: id, fname: fname, lname: lname },
+    });
   };
   return (
     <section id="log-in-page">
@@ -20,19 +32,46 @@ function LogIn(props) {
         <div className="spacer"></div>
         <form className="row justify-content-center" onSubmit={handleSubmit}>
           <div className="mb-3 text-center">
-            <label for="id" className="form-label">
+            <label htmlFor="id" className="form-label">
               Student ID
             </label>
             <input
               type="text"
               pattern="[0-9]{8}"
+              required="required"
               className="form-control"
               id="id"
-              onChange={handleChange}
+              onChange={handleIdChange}
             />
             <div id="idHelp" className="form-text">
               Please enter your 8-digit student ID number.
             </div>
+          </div>
+          <div className="mb-3 text-center">
+            <label htmlFor="fname" className="form-label">
+              First Name
+            </label>
+            <input
+              type="text"
+              required="required"
+              className="form-control"
+              id="fname"
+              onChange={handlefnameChange}
+              placeholder="Ex. John"
+            />
+          </div>
+          <div className="mb-3 text-center">
+            <label htmlFor="lname" className="form-label">
+              Last Name
+            </label>
+            <input
+              type="text"
+              required="required"
+              className="form-control"
+              id="lname"
+              onChange={handlelnameChange}
+              placeholder="Ex. Doe"
+            />
           </div>
           <button
             type="submit"
