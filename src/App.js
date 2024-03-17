@@ -13,6 +13,7 @@ import AdminView from "./components/admin/AdminView";
 import LogIn from "./components/LogIn";
 import { useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import Success from "./components/student/Success";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<StudentView />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/admin" element={<AdminView />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </Router>
   );
