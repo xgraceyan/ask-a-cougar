@@ -7,6 +7,8 @@ function StudentView(props) {
   let location = useLocation();
   const navigate = useNavigate();
   const [id, setId] = useState();
+  const [fname, setFname] = useState();
+  const [lname, setLname] = useState();
   const [questionId, setQuestionId] = useState();
   const [questionName, setQuestionName] = useState();
   const [question, setQuestion] = useState();
@@ -21,40 +23,44 @@ function StudentView(props) {
       console.log("null");
       redirect("/login");
     } else {
+      // eslint-disable-next-line
       const { loggedIn, id, fname, lname } = location.state;
-      let { error, count, data } = await supabase
-        .from("responses")
-        .select("*", { count: "exact" })
-        .eq("esuhsd_id", id);
+      // let { error, count, data } = await supabase
+      //   .from("responses")
+      //   .select("*", { count: "exact" })
+      //   .eq("esuhsd_id", id);
+      // if (error) throw error;
 
-      if (error) throw error;
-      if (data) {
-        console.log(data, count);
-        if (count == 0) createUser(id, fname, lname);
-        else {
-          setId(data[0].esuhsd_id);
-          if (data[0].response != null) {
-            console.log("yes");
-            navigate("/success");
-          }
-          getQuestion(data[0].question_id);
-        }
-      }
+      createUser(id, fname, lname);
+
+      // if (data) {
+      //   console.log(data, count);
+      //   if (count === 0) createUser(id, fname, lname);
+      //   else {
+      //     setId(data[0].esuhsd_id);
+      //     setFname(data[0].first_name);
+      //     setLname(data[0].last_name);
+      //     if (data[0].response != null) {
+      //       console.log("yes");
+      //       navigate("/success");
+      //     }
+      //     getQuestion(data[0].question_id);
+      //   }
+      // }
     }
   };
 
   const createUser = async (id, fname, lname) => {
-    const questionId = Math.floor(Math.random() * 150) + 1;
-    const { error } = await supabase.from("responses").insert({
-      esuhsd_id: id,
-      question_id: questionId,
-      response: null,
-      first_name: fname,
-      last_name: lname,
-    });
-    if (error) throw error;
-    else getQuestion(questionId);
+    // eslint-disable-next-line
+    const { data, count } = await supabase
+      .from('questions')
+      .select('*', { count: 'exact', head: true });
+    const questionId = Math.floor(Math.random() * count) + 1;
+    console.log(questionId);
+    getQuestion(questionId);
     setId(id);
+    setFname(fname);
+    setLname(lname);
   };
 
   const getQuestion = async (questionNum) => {
@@ -62,22 +68,31 @@ function StudentView(props) {
       .from("questions")
       .select("*")
       .eq("question_id", questionNum);
-
     if (error) throw error;
-    if (data) {
-      console.log(data);
+    if (!data[0]) setTimeout(() => {getQuestion(questionId)}, 1000);
+
+    if (data[0]) {
+    //   console.log(data);
       setQuestionId(questionNum);
       setQuestionName(data[0].first_name + " " + data[0].last_initial + ".");
       setQuestion(data[0].question);
+      return data[0].question;
     }
   };
 
   const submitResponse = async () => {
     console.log("submitted");
-    const { errorRes } = await supabase
-      .from("responses")
-      .update({ response: response })
-      .eq("esuhsd_id", id);
+    // const { errorRes } = await supabase
+    //   .from("responses")
+    //   .update({ response: response })
+    //   .eq("esuhsd_id", id);
+    const { errorRes } = await supabase.from("responses").insert({
+      esuhsd_id: id,
+      question_id: questionId,
+      response: response,
+      first_name: fname,
+      last_name: lname,
+    });
     if (errorRes) throw errorRes;
 
     const { errorQ } = await supabase
@@ -106,19 +121,19 @@ function StudentView(props) {
           <h6 className="text-center text-label-box">
             <div className="fw-light fst-italic">
               Please write a letter responding to a middle school student's
-              questions about the EVHS experience. Remember to write it in{" "}
+              questions about the EVHS experience. You can respond to as many
+              different students as you want! Remember to write it in{" "}
               <u>letter format</u> and be <u>ROAR appropriate</u> in your
               response. Thank you for your help! ❤️
               <br />
               <br />
+              {/* FIXME: link to example response */}
               You can go <a href="">here</a> for an example response.
             </div>
             <br />
             <br />
             ESUHSD ID: {id}{" "}
-            <a>
-              <Link to="/login">(Log out.)</Link>
-            </a>
+            <Link to="/login">(Log out.)</Link>
           </h6>
           <div className="row">
             <div className="col-lg-6 col-12" id="letter">
@@ -145,7 +160,7 @@ function StudentView(props) {
                   className="card"
                   rows="6"
                   cols="75"
-                  placeholder="Enter text here"
+                  placeholder="Enter text here"  // FIXME: put default response
                   required="required"
                   onChange={handleResponseChange}
                 ></textarea>

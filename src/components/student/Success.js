@@ -10,7 +10,7 @@ const Success = () => {
           service project out. Now relax and enjoy the rest of homeroom!
         </h4>
         <h4 className="text-center text-label-box">
-          <a href="">Have extra time? Answer another question.</a>
+          <a href="/">Have extra time? Answer another question.</a>
         </h4>
       </div>
     </section>
