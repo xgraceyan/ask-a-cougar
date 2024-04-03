@@ -60,3 +60,27 @@ label {
   margin-bottom: 1.5rem;
   border-color: rgba(0, 0, 0, 0.5);
 }
+
+#color-select img {
+  max-width: 40%;
+  max-height: 40%;
+  width: auto;
+  height: auto;
+}
+
+.letter-preview-body {
+  // background-image: url("../public/theme_1_full.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-blend-mode: lighten;
+}
+
+.modal-body {
+  height: 660px;
+  width: 100%;
+}
+
+#letter-text {
+  padding: 1rem;
+}
