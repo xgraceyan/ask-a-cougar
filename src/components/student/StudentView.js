@@ -153,7 +153,9 @@ function StudentView(props) {
       .eq("esuhsd_id", id);
     if (errorU) throw errorU;
 
-    navigate("/success");
+    navigate("/success", {
+      state: { loggedIn: true, id: id, fname: fname, lname: lname },
+    });
   };
 
   const handleResponseChange = (e) => {
@@ -192,7 +194,7 @@ function StudentView(props) {
                 className="modal-body letter-preview-body"
                 style={{ backgroundImage: styleUrl }}
               >
-                <div id="letter-text">
+                <div id="letter-text" className="text-wrap text-break">
                   <p>
                     <strong>
                       <pre>{response}</pre>
