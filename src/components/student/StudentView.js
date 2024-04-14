@@ -175,7 +175,7 @@ function StudentView(props) {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -195,11 +195,11 @@ function StudentView(props) {
                 style={{ backgroundImage: styleUrl }}
               >
                 <div id="letter-text" className="text-wrap text-break">
-                  <p>
-                    <strong>
-                      <pre>{response}</pre>
-                    </strong>
-                  </p>
+                  <pre>
+                    <p>
+                      <strong>{response}</strong>
+                    </p>
+                  </pre>
                 </div>
               </div>
             </div>
@@ -217,7 +217,14 @@ function StudentView(props) {
               <br />
               <br />
               {/* FIXME: link to example response */}
-              You can go <a href="">here</a> for an example response.
+              You can go{" "}
+              <a
+                href="https://docs.google.com/document/d/19dqJd8DkJfbenY2F1Dm5XLpQbQ7U0gjX2qmcLiNs3B8/edit?usp=sharing"
+                target="_blank"
+              >
+                here
+              </a>{" "}
+              for an example response.
             </div>
             <br />
             <br />
@@ -238,7 +245,7 @@ function StudentView(props) {
                 className="btn-check"
                 name="options"
                 id="option1"
-                autocomplete="off"
+                autoComplete="off"
                 defaultChecked
                 onClick={(e) => {
                   setTheme(1);
@@ -253,7 +260,7 @@ function StudentView(props) {
                 className="btn-check"
                 name="options"
                 id="option2"
-                autocomplete="off"
+                autoComplete="off"
                 onClick={(e) => {
                   setTheme(2);
                 }}
@@ -266,14 +273,28 @@ function StudentView(props) {
                 type="radio"
                 className="btn-check"
                 name="options"
-                id="option4"
-                autocomplete="off"
+                id="option3"
+                autoComplete="off"
                 onClick={(e) => {
                   setTheme(3);
                 }}
               />
-              <label className="btn img-option" htmlFor="option4">
+              <label className="btn img-option" htmlFor="option3">
                 <img src="theme_3.png" alt="" />
+              </label>
+
+              <input
+                type="radio"
+                className="btn-check"
+                name="options"
+                id="option4"
+                autoComplete="off"
+                onClick={(e) => {
+                  setTheme(4);
+                }}
+              />
+              <label className="btn img-option" htmlFor="option4">
+                <img src="theme_4.png" alt="" />
               </label>
             </form>
 
