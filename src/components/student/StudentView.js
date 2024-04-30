@@ -15,7 +15,7 @@ function StudentView(props) {
   const [response, setResponse] = useState();
   const [questionsCompleted, setQuestionsCompleted] = useState();
   const [theme, setTheme] = useState(1);
-  const count = 131;
+  const count = 152;
 
   useEffect(() => {
     getUser();
