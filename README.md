@@ -1,6 +1,8 @@
 # Ask a Cougar
 
 A web application developed for an AP with WE service project that aims to help answer questions about high school through a quasi-"pen pal" system.
+
+
 Used by over 300 students to help the transition into high school easier for middle-school students.
 
 High school students can log in with their student ID and answer as many randomly selected questions from middle schoolers as they'd like, with customization options such as choosing a "theme" for their letter response.
