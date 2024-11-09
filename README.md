@@ -8,6 +8,10 @@ Used by over 300 students to help the transition into high school easier for mid
 High school students can log in with their student ID and answer as many randomly selected questions from middle schoolers as they'd like, with customization options such as choosing a "theme" for their letter response.
 
 The site can be accessed at https://askacougar.org/
+Deployment of this website to students has already finished, but you can access the interface with a dummy account:
+ID: 12345678
+First name: John
+Last name: Doe
 
 ## Interface
 ![front page](https://i.imgur.com/jnwbAVa.png)
